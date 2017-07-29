@@ -1,16 +1,18 @@
 html
   head    
-    link(rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.css")
-    link(rel="stylesheet" href="/static/stylesheets/style.css")
+    link(rel="stylesheet" href="/static/dist/styles/vendor.css")
+    link(rel="stylesheet" href="/static/dist/styles/main.css")
 
 
-  body(ng-app="wshwshApp")
+  body(ng-app="root")(ng-strict-di)
+    root
  
 
   
-    script(src="/static/bower_components/jquery/dist/jquery.js")
-    script(src="/static/bower_components/angular/angular.js")
-    script(src="/static/bower_components/bootstrap/dist/js/bootstrap.js")
+   
+    script(src="/static/dist/scripts/vendor.js")
+    script(src="/static/dist/scripts/plugins.js")
+    script(src="/static/dist/scripts/main.js")
 
-    script(src="/static/javascripts/app.js")
-    script(src="/static/javascripts/controllers/userController.js")
+
+
