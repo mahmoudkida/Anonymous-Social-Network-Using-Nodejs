@@ -14,14 +14,14 @@ router.route('/:userId')
             })
             .populate('msg.from')
             .exec(function (err, crushs) {
-                if (err) throw err;
+                if (err) next(err);
                 res.json(crushs);
             });
     })
 
     .post(Verify.verifyOrdinaryUser, function (req, res, next) {
         crushs.create(req.body, function (err, crush) {
-            if (err) throw err;
+            if (err) next(err);
             console.log('crush created!');
             var id = crush._id;
             res.writeHead(200, {
@@ -34,7 +34,7 @@ router.route('/:userId')
 
     .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         crushs.findByIdAndRemove(req.params.userId, function (err, resp) {
-            if (err) throw err;
+            if (err) next(err);
             res.json(resp);
         });
     });
@@ -45,18 +45,18 @@ router.route('/:crushId/msg')
         crushs.findById(req.params.crushId)
             .populate('msg.from')
             .exec(function (err, crush) {
-                if (err) throw err;
+                if (err) next(err);
                 res.json(crush.msg);
             });
     })
 
     .post(function (req, res, next) {
         crushs.findById(req.params.crushId, function (err, crush) {
-            if (err) throw err;
-            req.body.from = req.decoded._doc._id;
+            if (err) next(err);
+            req.body.from = req.decoded._id;
             crush.msg.push(req.body);
             crush.save(function (err, crush) {
-                if (err) throw err;
+                if (err) next(err);
                 console.log('Updated msg!');
                 res.json(crush);
             });
@@ -65,12 +65,12 @@ router.route('/:crushId/msg')
 
     .delete(function (req, res, next) {
         crushs.findById(req.params.crushId, function (err, crush) {
-            if (err) throw err;
+            if (err) next(err);
             for (var i = (crush.msg.length - 1); i >= 0; i--) {
                 crush.msg.id(crush.msg[i]._id).remove();
             }
             crush.save(function (err, result) {
-                if (err) throw err;
+                if (err) next(err);
                 res.writeHead(200, {
                     'Content-Type': 'text/plain'
                 });
@@ -87,7 +87,7 @@ router.route('/:crushId/msg/:commentId')
         crushs.findById(req.params.crushId)
             .populate('msg.from')
             .exec(function (err, crushId) {
-                if (err) throw err;
+                if (err) next(err);
                 res.json(crush.msg.id(req.params.commentId));
             });
     })
@@ -96,12 +96,12 @@ router.route('/:crushId/msg/:commentId')
         // We delete the existing commment and insert the updated
         // comment as a new comment
         crushs.findById(req.params.crushId, function (err, crush) {
-            if (err) throw err;
+            if (err) next(err);
             crush.msg.id(req.params.commentId).remove();
-            req.body.from = req.decoded._doc._id;
+            req.body.from = req.decoded._id;
             crush.msg.push(req.body);
             crush.save(function (err, crush) {
-                if (err) throw err;
+                if (err) next(err);
                 console.log('Updated msg!');
                 res.json(crush);
             });
@@ -111,14 +111,14 @@ router.route('/:crushId/msg/:commentId')
     .delete(function (req, res, next) {
         crushs.findById(req.params.crushId, function (err, crush) {
             if (crush.msg.id(req.params.commentId).from !=
-                req.decoded._doc._id) {
+                req.decoded._id) {
                 var err = new Error('You are not authorized to perform this operation!');
                 err.status = 403;
                 return next(err);
             }
             crush.msg.id(req.params.commentId).remove();
             crush.save(function (err, resp) {
-                if (err) throw err;
+                if (err) next(err);
                 res.json(resp);
             });
         });

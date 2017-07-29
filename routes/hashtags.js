@@ -13,14 +13,14 @@ router.route('/')
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         hashtags.find()
             .exec(function (err, hashtags) {
-                if (err) throw err;
+                if (err) next(err);
                 res.json(hashtags);
             });
     })
 
     .post(Verify.verifyOrdinaryUser, function (req, res, next) {
         hashtags.create(req.body, function (err, hashtag) {
-            if (err) throw err;
+            if (err) next(err);
             console.log('hashtag created!');
             var id = hashtag._id;
             res.writeHead(200, {
@@ -33,7 +33,7 @@ router.route('/')
 
     .delete(Verify.verifyOrdinaryUser, function (req, res, next) {
         hashtags.findByIdAndRemove(req.params.userId, function (err, resp) {
-            if (err) throw err;
+            if (err) next(err);
             res.json(resp);
         });
     });
@@ -43,7 +43,7 @@ router.route('/:hashtagId')
         posts.find({
             hashtag: req.params.hashtagId
         }).exec(function (err, posts) {
-            if (err) throw err;
+            if (err) next(err);
             res.json(posts);
         });
 

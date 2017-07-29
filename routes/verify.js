@@ -51,15 +51,17 @@ exports.verifyAdmin = function (req, res, next) {
                 // if everything is good, save to request for use in other routes
                 req.decoded = decoded;
 
-                if (req.decoded._doc.admin) {
-                    next();
-                } else {
-                    var err = new Error('You are not authorized to perform this operation!');
-                    err.status = 403;
-                    return next(err);
+                if (req.decoded.admin) {
+                    if (req.decoded.admin) {
+                        next();
+                    } else {
+                        var err = new Error('You are not authorized to perform this operation!');
+                        err.status = 403;
+                        return next(err);
+                    }
                 }
-            }
 
+            }
         });
     } else {
         // if there is no token

@@ -1,5 +1,16 @@
-extends layout
+html
+  head    
+    link(rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel="stylesheet" href="/static/stylesheets/style.css")
 
-block content
-  h1= title
-  p Welcome to #{title}
+
+  body(ng-app="wshwshApp")
+ 
+
+  
+    script(src="/static/bower_components/jquery/dist/jquery.js")
+    script(src="/static/bower_components/angular/angular.js")
+    script(src="/static/bower_components/bootstrap/dist/js/bootstrap.js")
+
+    script(src="/static/javascripts/app.js")
+    script(src="/static/javascripts/controllers/userController.js")
