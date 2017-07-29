@@ -1,5 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var msgModel = new Schema({
+    from: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
+    message: String
+}, {
+    timestamps: true
+});
 var crushModel = new Schema({
     from: {
         type: Schema.Types.ObjectId,
@@ -9,7 +18,6 @@ var crushModel = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     },
-    created: Date,
     text: String
 });
 module.exports = mongoose.model('crush', crushModel);

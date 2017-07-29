@@ -4,15 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var authenticate = require('./authenticate');
 
+var config = require('./config');
 
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users');
 var posts = require('./routes/posts');
 var messages = require('./routes/messages');
 var hashtags = require('./routes/hashtags');
 var crushs = require('./routes/crushs');
-var comments = require('./routes/comments');
 
 
 var app = express();
@@ -30,9 +33,31 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({
+    extended: true
+}));
+app.use(require('express-session')({
+    secret: config.secretKey,
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
+mongoose.connect(config.mongoUrl);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    // we're connected!
+    console.log("Connected correctly to server");
+});
 app.use('/', index);
 app.use('/users', users);
+app.use('/posts', posts);
+app.use('/messages', messages);
+app.use('/hashtags', hashtags);
+app.use('/crushs', crushs);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -40,14 +65,9 @@ app.use(function (req, res, next) {
     err.status = 404;
     next(err);
 });
-
-app.use('/', routes);
-app.use('/users', users);
-app.use('/posts', posts);
-app.use('/messages', messages);
-app.use('/hashtags', hashtags);
-app.use('/crushs', crushs);
-app.use('/comments', comments);
+var listener = app.listen(8888, function () {
+    console.log('Listening on port ' + listener.address().port); //Listening on port 8888
+});
 
 // error handler
 app.use(function (err, req, res, next) {
