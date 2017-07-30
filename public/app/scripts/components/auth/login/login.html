@@ -1,14 +1,14 @@
 <div class="auth">
-  <h1>Login</h1>
-  <auth-form
-    user="$ctrl.user"
-    message="{{ $ctrl.error }}"
-    button="Login"
-    on-submit="$ctrl.loginUser($event);">
-  </auth-form>
-</div>
-<div class="auth__info">
-  <a ui-sref="auth.register">
-    Don't have an account? Create one here.
-  </a>
+    <div class="form-wrapper">
+        <p class="signup-text">Login now and meet awesome people around the world</p>
+        <form action="#">
+            <fieldset class="form-group">
+                <input type="email" class="form-control" id="example-email" placeholder="Enter email">
+            </fieldset>
+            <fieldset class="form-group">
+                <input type="password" class="form-control" id="example-password" placeholder="Enter a password">
+            </fieldset>
+        </form>
+        <button class="btn-secondary">Login</button>
+    </div>
 </div>
