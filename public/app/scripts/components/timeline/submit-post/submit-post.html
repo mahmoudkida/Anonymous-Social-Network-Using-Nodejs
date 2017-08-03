@@ -1,0 +1,24 @@
+<form ng-submit="$ctrl.submitPost()" class="create-post">
+    <div class="row">
+        <div class="col-md-10 col-sm-10">
+            <div class="form-group">
+                <img src="images/users/user-1.jpg" default-image="/static/app/images/emp.png" alt="" class="profile-photo-md" />
+                <textarea name="texts" ng-model="$ctrl.postText" ng-required="true"
+                           class="form-control" placeholder="Write what you wish..."></textarea>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <div class="tools">
+                <!--
+<ul class="publishing-tools list-inline">
+    <li><a href="#"><i class="ion-compose"></i></a></li>
+    <li><a href="#"><i class="ion-images"></i></a></li>
+    <li><a href="#"><i class="ion-ios-videocam"></i></a></li>
+    <li><a href="#"><i class="ion-map"></i></a></li>
+</ul>
+-->
+                <button type="submit" class="btn btn-primary pull-right">Publish</button>
+            </div>
+        </div>
+    </div>
+</form>

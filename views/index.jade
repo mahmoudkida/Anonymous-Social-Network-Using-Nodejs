@@ -1,7 +1,11 @@
 html
   head    
-    link(rel="stylesheet" href="/static/dist/styles/vendor.css")
-    link(rel="stylesheet" href="/static/dist/styles/main.css")
+    //link(rel="stylesheet" href="/static/dist/styles/vendor.css")
+    //link(rel="stylesheet" href="/static/dist/styles/main.css")
+    |<link rel="stylesheet" href="/static/bower_components/angular-loading-bar/build/loading-bar.css" />
+    |<link rel="stylesheet" href="/static/bower_components/Ionicons/css/ionicons.css" />
+   
+    |<link rel="stylesheet" href="/static/.tmp/styles/main.css">
 
 
   body(ng-app="root")(ng-strict-di)
@@ -10,9 +14,77 @@ html
 
   
    
-    script(src="/static/dist/scripts/vendor.js")
-    script(src="/static/dist/scripts/plugins.js")
-    script(src="/static/dist/scripts/main.js")
+    
+    |<script src="/static/bower_components/jquery/dist/jquery.js"></script>
+    |<script src="/static/bower_components/modernizr/modernizr.js"></script>
+    |<script src="/static/bower_components/angular/angular.js"></script>
+    |<script src="/static/bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    |<script src="/static/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    |<script src="/static/bower_components/ngstorage/ngStorage.js"></script>
+    |<script src="/static/bower_components/alertifyjs/dist/js/alertify.js"></script>
+    |<script src="/static/bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    |<script src="/static/bower_components/moment/moment.js"></script>
+    |<script src="/static/bower_components/angular-moment/angular-moment.js"></script>
+
+
+
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    |<script src="/static/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+
+    |<script src="/static/bower_components/alertifyjs/dist/js/ngAlertify.js"></script>
+    |<script src="/static/app/scripts/directives/default-image.js"></script>
+
+
+    |<script src="/static/app/scripts/root.module.js"></script>
+    |<script src="/static/app/scripts/root.component.js"></script>
+    |<script src="/static/app/scripts/root.contoller.js"></script>
+
+
+
+    |<script src="/static/app/scripts/common/common.module.js"></script>
+    |<script src="/static/app/scripts/common/common.component.js"></script>
+    |<script src="/static/app/scripts/common/common.service.js"></script>
+    |<script src="/static/app/scripts/common/common.controller.js"></script>
+    
+    |<script src="/static/app/scripts/common/sidebar/sidebar.component.js"></script>
+    |<script src="/static/app/scripts/common/sidebar/sidebar.controller.js"></script>
+
+    |<script src="/static/app/scripts/common/who-to-follow/who-to-follow.component.js"></script>
+    |<script src="/static/app/scripts/common/who-to-follow/who-to-follow.controller.js"></script>
+
+
+    |<script src="/static/app/scripts/components/componenets.module.js"></script>
+    |<script src="/static/app/scripts/components/auth/auth.module.js"></script>
+    |<script src="/static/app/scripts/components/auth/auth.service.js"></script>
+    
+    |<script src="/static/app/scripts/components/auth/auth-form/auth-form.component.js"></script>
+    |<script src="/static/app/scripts/components/auth/auth-form/auth-form.controller.js"></script>
+
+    |<script src="/static/app/scripts/components/auth/login/login.component.js"></script>
+    |<script src="/static/app/scripts/components/auth/login/login.controller.js"></script>
+
+    |<script src="/static/app/scripts/components/auth/register/register.component.js"></script>
+    |<script src="/static/app/scripts/components/auth/register/register.controller.js"></script>
+
+    |<script src="/static/app/scripts/components/timeline/timeline.module.js"></script>
+    |<script src="/static/app/scripts/components/timeline/timeline.service.js"></script>
+
+    |<script src="/static/app/scripts/components/timeline/posts/posts.component.js"></script>
+    |<script src="/static/app/scripts/components/timeline/posts/posts.controller.js"></script>
+    
+    |<script src="/static/app/scripts/components/timeline/submit-post/submit-post.component.js"></script>
+    |<script src="/static/app/scripts/components/timeline/submit-post/submit-post.controller.js"></script>
+
 
 
 

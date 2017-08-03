@@ -1,4 +1,7 @@
 angular
     .module('components.auth', [
-    'ui.router'
+    'ui.router',
+    'ngStorage',
+    'ngAlertify',
+    'angular-jwt'
   ])

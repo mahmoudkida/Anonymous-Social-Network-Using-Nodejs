@@ -8,7 +8,11 @@
     "angular-loading-bar": "^0.9.0",
     "angular-ui-router": "^1.0.5",
     "font-awesome": "^4.7.0",
-    "Ionicons": "ionicons#^2.0.1"
+    "Ionicons": "ionicons#^2.0.1",
+    "ngstorage": "^0.3.11",
+    "alertifyjs": "^1.0.11",
+    "angular-jwt": "^0.1.9",
+    "angular-moment": "^1.0.1"
   },
   "overrides": {
     "bootstrap-sass": {

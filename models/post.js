@@ -14,10 +14,10 @@ var commmentModel = new Schema({
 });
 
 var postModel = new Schema({
-    by: [{
+    by: {
         type: Schema.Types.ObjectId,
         ref: 'user'
-    }],
+    },
     circles: String,
     type: String,
     text: String,

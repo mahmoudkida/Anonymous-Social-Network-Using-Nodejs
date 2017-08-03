@@ -1,0 +1,33 @@
+<div class="post-content" ng-repeat="post in $ctrl.posts track by $index">
+  <!--<img src="images/post-images/1.jpg" alt="post-image" class="img-responsive post-image" />-->
+  <div class="post-container">
+    <img ng-src="post.by.picture" default-image="/static/app/images/emp.png" alt="user"
+         class="profile-photo-md pull-left"/>
+    <div class="post-detail">
+      <div class="user-info">
+        <h5><a href="timeline.html" class="profile-link">{{post.by.username}}</a>
+          <span class="following">following</span>
+        </h5>
+        <p class="text-muted">Published {{ post.createdAt | amDurationFormat}}</p>
+      </div>
+      <div class="reaction">
+        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
+        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
+      </div>
+      <div class="line-divider"></div>
+      <div class="post-text">
+        <p>{{post.text}}</p>
+      </div>
+      <div class="line-divider"></div>
+      <div class="post-comment" ng-repeat="comment in post.comments">
+        <img src="images/users/user-11.jpg"  default-image="/static/app/images/emp.png" alt="" class="profile-photo-sm"/>
+        <p><a href="timeline.html" class="profile-link">{{comment.postedBy.username}} </a>{{comment.comment}} </p>
+      </div>
+      <form ng-submit="$ctrl.addComment(post)" class="post-comment">
+        <img src="images/users/user-1.jpg" default-image="/static/app/images/emp.png" alt="" class="profile-photo-sm"/>
+        <input type="text" ng-model="post.newComment" class="form-control" placeholder="Post a comment..." ng-required="true">
+        <button type="submit"><i class="fa fa-paper-plane-o"></i></button>
+      </form>
+    </div>
+  </div>
+</div>

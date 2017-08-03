@@ -14,7 +14,17 @@ router.route('/')
             res.json(users);
         })
     });
-
+router.route('/userInfo')
+    .get(Verify.verifyOrdinaryUser, function (req, res, next) {
+        User.find({
+            '_id': req.decoded._id
+        }, function (err, user) {
+            if (err) {
+                return next(err);
+            }
+            res.json(user);
+        })
+    });
 router.post('/register', function (req, res) {
     User.register(new User(req.body),
         req.body.password,
@@ -26,8 +36,15 @@ router.post('/register', function (req, res) {
             }
             user.save(function (err, user) {
                 passport.authenticate('local')(req, res, function () {
+                    var token = Verify.getToken({
+                        "username": user.username,
+                        "_id": user._id,
+                        "admin": user.admin
+                    });
                     return res.status(200).json({
-                        status: 'Registration Successful!'
+                        status: 'Registration Successful!',
+                        success: true,
+                        token: token
                     });
                 });
             });
@@ -36,6 +53,7 @@ router.post('/register', function (req, res) {
 
 router.post('/login', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
+        debugger;
         if (err) {
             return next(err);
         }

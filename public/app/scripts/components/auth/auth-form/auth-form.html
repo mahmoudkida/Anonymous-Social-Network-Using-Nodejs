@@ -6,7 +6,7 @@
         <!-- Sign Up Form
         ================================================= -->
         <div class="sign-up-form">
-            <a href="index.html" class="logo"><img src="/static/dist/images/logo.png" alt="Friend Finder" /></a>
+            <a href="index.html" class="logo"><img src="{{$root.imageUrl}}/logo.png" alt="Friend Finder" /></a>
             <h2 class="text-white">Find My Friends</h2>
             <div class="line-divider" ng-init="$ctrl.showRegister = true"></div>
             <register ng-if="$ctrl.showRegister"></register>
@@ -15,7 +15,7 @@
                 <span ng-if="$ctrl.showRegister">You already have an account? Login</span>
                 <span ng-if="!$ctrl.showRegister">You don't have an account? Register</span>
             </a>
-            <img class="form-shadow" src="/static/dist/images/bottom-shadow.png" alt="" />
+            <img class="form-shadow" src="{{$root.imageUrl}}/bottom-shadow.png" alt="" />
 
 
         </div>
@@ -55,7 +55,7 @@
         <h2 class="sub-title">find awesome people like you</h2>
         <div id="incremental-counter" data-value="101242"></div>
         <p>People Already Signed Up</p>
-        <img src="/static/dist/images/face-map.png" alt="" class="img-responsive face-map slideUp hidden-sm hidden-xs" />
+        <img src="{{$root.imageUrl}}/face-map.png" alt="" class="img-responsive face-map slideUp hidden-sm hidden-xs" />
     </div>
 
 </section>
@@ -66,11 +66,11 @@
     <div class="container wrapper">
         <h1 class="section-title slideDown">download</h1>
         <ul class="app-btn list-inline slideUp">
-            <li><button class="btn-secondary"><img src="/static/dist/images/app-store.png" alt="App Store" /></button></li>
-            <li><button class="btn-secondary"><img src="/static/dist/images/google-play.png" alt="Google Play" /></button></li>
+            <li><button class="btn-secondary"><img src="{{$root.imageUrl}}/app-store.png" alt="App Store" /></button></li>
+            <li><button class="btn-secondary"><img src="{{$root.imageUrl}}/google-play.png" alt="Google Play" /></button></li>
         </ul>
         <h2 class="sub-title">stay connected anytime, anywhere</h2>
-        <img src="/static/dist/images/iPhone.png" alt="iPhone" class="img-responsive" />
+        <img src="{{$root.imageUrl}}/iPhone.png" alt="iPhone" class="img-responsive" />
     </div>
 </section>
 

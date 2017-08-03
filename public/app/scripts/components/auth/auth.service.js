@@ -9,13 +9,15 @@ function AuthService($http, $rootScope) {
     }
 
     this.login = function (loginData) {
-        return $http.get($rootScope.serviceUrl.login, loginData)
+        return $http.post($rootScope.serviceUrl.login, loginData)
             .then(function successCallBack(data) {
                 return data;
             }, function failureCallBack(data) {
                 return data;
             })
     }
+
+
 }
 
 AuthService.$inject = ['$http', '$rootScope']

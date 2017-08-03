@@ -1,18 +1,19 @@
 <div class="auth">
     <div class="form-wrapper">
         <p class="signup-text">Signup now and meet awesome people around the world</p>
-        <form action="#">
+        <form ng-submit="$ctrl.createUser()">
             <fieldset class="form-group">
-                <input type="text" class="form-control" id="example-name" placeholder="Enter name">
+                <input type="text" class="form-control" ng-required="true" ng-model="$ctrl.user.username" id="example-name" placeholder="Enter name">
             </fieldset>
             <fieldset class="form-group">
-                <input type="email" class="form-control" id="example-email" placeholder="Enter email">
+                <input type="email" class="form-control" ng-required="true" ng-model="$ctrl.user.email" id="example-email" placeholder="Enter email">
             </fieldset>
             <fieldset class="form-group">
-                <input type="password" class="form-control" id="example-password" placeholder="Enter a password">
+                <input type="password" class="form-control" ng-required="true" ng-model="$ctrl.user.password" id="example-password" placeholder="Enter a password">
             </fieldset>
+            <p>By signning up you agree to the terms</p>
+            <button type="submit" class="btn-secondary">Register</button>
         </form>
-        <p>By signning up you agree to the terms</p>
-        <button class="btn-secondary">Register</button>
+
     </div>
 </div>

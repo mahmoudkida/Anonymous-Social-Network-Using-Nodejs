@@ -7,11 +7,12 @@ var posts = require('../models/post');
 var router = express.Router();
 router.use(bodyParser.json());
 var Verify = require('./verify');
-router.route('/:userId')
+router.route('/')
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         posts.find({
-                by: req.params.userId
-            })
+                by: req.decoded._id
+            }).sort('date')
+            .populate('by')
             .populate('comments.postedBy')
             .exec(function (err, posts) {
                 if (err) next(err);
@@ -20,6 +21,7 @@ router.route('/:userId')
     })
 
     .post(Verify.verifyOrdinaryUser, function (req, res, next) {
+        req.body.by = req.decoded._id;
         posts.create(req.body, function (err, post) {
             if (err) next(err);
             console.log('Post created!');
@@ -38,6 +40,16 @@ router.route('/:userId')
             res.json(resp);
         });
     });
+router.route('/:userId').get(Verify.verifyOrdinaryUser, function (req, res, next) {
+    posts.find({
+            by: req.params.userId
+        })
+        .populate('comments.postedBy')
+        .exec(function (err, posts) {
+            if (err) next(err);
+            res.json(posts);
+        });
+})
 router.route('/:postId/comments')
     .all(Verify.verifyOrdinaryUser)
 
@@ -58,7 +70,7 @@ router.route('/:postId/comments')
             post.save(function (err, post) {
                 if (err) next(err);
                 console.log('Updated Comments!');
-                res.json(post);
+                res.json(post.comments);
             });
         });
     })

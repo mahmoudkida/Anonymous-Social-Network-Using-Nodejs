@@ -3,6 +3,7 @@ $icon-font-path: '../fonts/';
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "bower_components/font-awesome/scss/font-awesome.scss";
 // endbower
+@import "bower_components/alertifyjs/src/sass/alertify";
 @import "style";
 .browserupgrade {
     margin: 0.2em 0;

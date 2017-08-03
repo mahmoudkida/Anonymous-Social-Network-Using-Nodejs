@@ -1,6 +1,30 @@
 <div class="root">
 
+    <div id="page-contents">
+        <div class="container">
+            <div class="row">
+
+                <!-- Newsfeed Common Side Bar Left
+          ================================================= -->
+                <div class="col-md-3 static">
+                    <sidebar></sidebar>
+                </div>
+                <div class="col-md-7">
+                    <div ui-view></div>
+
+                </div>
+
+                <!-- Newsfeed Common Side Bar Right
+          ================================================= -->
+                <div class="col-md-2 static">
+                    <who-to-follow></who-to-follow>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="app">
-        <div ui-view></div>
+
     </div>
 </div>
