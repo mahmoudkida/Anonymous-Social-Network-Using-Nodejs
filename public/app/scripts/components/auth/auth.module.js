@@ -3,5 +3,6 @@ angular
     'ui.router',
     'ngStorage',
     'ngAlertify',
-    'angular-jwt'
-  ])
+    'angular-jwt',
+      'ngFileUpload'
+  ]);

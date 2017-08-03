@@ -11,7 +11,7 @@ router.route('/')
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         posts.find({
                 by: req.decoded._id
-            }).sort('date')
+            }).sort('-createdAt')
             .populate('by')
             .populate('comments.postedBy')
             .exec(function (err, posts) {
@@ -43,18 +43,31 @@ router.route('/')
 router.route('/:userId').get(Verify.verifyOrdinaryUser, function (req, res, next) {
     posts.find({
             by: req.params.userId
-        })
+        }).sort('-createdAt')
         .populate('comments.postedBy')
         .exec(function (err, posts) {
             if (err) next(err);
             res.json(posts);
         });
-})
+});
+router.route('/:postId/like')
+    .post(function (req,res,next) {
+        posts.findById(req.params.postId, function (err, post) {
+            if (err) next(err);
+            post.like = post.like+1;
+            post.save(function (err, post) {
+                if (err) next(err);
+                console.log('Updated Comments!');
+                res.json(post.comments);
+            });
+        });
+    });
 router.route('/:postId/comments')
     .all(Verify.verifyOrdinaryUser)
 
     .get(function (req, res, next) {
         posts.findById(req.params.postId)
+            .sort('-createdAt')
             .populate('comments.postedBy')
             .exec(function (err, post) {
                 if (err) next(err);

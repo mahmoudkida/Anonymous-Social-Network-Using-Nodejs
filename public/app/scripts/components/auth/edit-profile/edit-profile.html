@@ -1,0 +1,95 @@
+<div class="text-center" ng-init="$ctrl.visibleForm = 'updateInfo'">
+  <div class="btn-group" role="group" aria-label="Default button group">
+    <button type="button" class="btn btn-default"
+            ng-class="{active : $ctrl.visibleForm == 'updateInfo'}"
+            ng-click="$ctrl.visibleForm = 'updateInfo'">Profile Info</button>
+    <button type="button" class="btn btn-default"
+            ng-class="{active : $ctrl.visibleForm == 'updatePicture'}"
+            ng-click="$ctrl.visibleForm = 'updatePicture'">Profile Picture</button>
+    <button type="button" class="btn btn-default"
+            ng-class="{active : $ctrl.visibleForm == 'updatePassword'}"
+            ng-click="$ctrl.visibleForm = 'updatePassword'">Password</button>
+  </div>
+</div>
+<br><br>
+<form class="form-horizontal" ng-submit="$ctrl.updateInfo()" ng-if="$ctrl.visibleForm == 'updateInfo'">
+  <div class="form-group">
+    <label for="username" class="col-sm-2 control-label">user name</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" ng-model="$ctrl.user.username" id="username" placeholder="user name...">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="anonymousname" class="col-sm-2 control-label">anonymous name</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" ng-model="$ctrl.user.anonymousName" id="anonymousname"
+             placeholder="anonymous name...">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="age" class="col-sm-2 control-label">age</label>
+    <div class="col-sm-7">
+      <input type="number" class="form-control" ng-model="$ctrl.user.age" id="age" placeholder="age...">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Biography" class="col-sm-2 control-label">Biography</label>
+    <div class="col-sm-7">
+      <textarea class="form-control" ng-model="$ctrl.user.bio" id="Biography" placeholder="Biography..."></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-7">
+      <input type="email" class="form-control" ng-model="$ctrl.user.email" id="email" placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-7">
+      <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;update</button>
+    </div>
+  </div>
+</form>
+
+
+<form class="form-horizontal" ng-submit="$ctrl.updatePicture($ctrl.profileImage)" ng-if="$ctrl.visibleForm == 'updatePicture'">
+  <div class="form-group">
+    <div class="text-center">
+      <img ng-src="{{$ctrl.user.picture}}" class="img-responsive" style="width: 40%;display: inline-block" ng-if="$ctrl.user.picture">
+    </div>
+    <br>
+    <label for="profileimage" class="col-sm-4 control-label">Profile Image</label>
+    <div class="col-sm-8">
+      <input type="file" ngf-select ng-model="$ctrl.profileImage" name="file"
+             accept="image/*" ngf-max-size="2MB" required id="profileimage"
+             ngf-model-invalid="errorFile">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-7">
+      <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Save Picture</button>
+    </div>
+  </div>
+</form>
+
+
+<form class="form-horizontal" ng-submit="$ctrl.updatePassword()" ng-if="$ctrl.visibleForm == 'updatePassword'">
+  <div class="form-group">
+    <label for="oldPassword" class="col-sm-2 control-label">Old Password</label>
+    <div class="col-sm-7">
+      <input type="password" class="form-control" ng-model="$ctrl.oldPassword" id="oldPassword" placeholder="Old Password...">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="newPassword" class="col-sm-2 control-label">New Password</label>
+    <div class="col-sm-7">
+      <input type="password" class="form-control" ng-model="$ctrl.newPassword" id="newPassword" placeholder="Old Password...">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-7">
+      <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Save Password</button>
+    </div>
+  </div>
+</form>
+

@@ -8,16 +8,24 @@ var userModel = new Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        select: false
     },
     anonymousName: String,
     OauthId: String,
     OauthToken: String,
     age: Number,
-    bio: String,
+    bio: {
+        type:String,
+        default : ''
+    },
+    email:String,
     location: String,
     interests: [String],
-    picture: String,
+    picture: {
+        type: String,
+        default : ''
+    },
     admin: {
         type: Boolean,
         default: false

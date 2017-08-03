@@ -22,7 +22,7 @@ function timelineService($http, $rootScope) {
       }, function failureCallBack(data) {
         return data;
       })
-  }
+  };
   this.submitComment = function (commentData,postId) {
     return $http.post($rootScope.serviceUrl.submitComment.replace('{{postId}}',postId), commentData)
       .then(function successCallBack(data) {

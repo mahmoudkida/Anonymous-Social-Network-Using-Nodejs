@@ -6,7 +6,7 @@ function CommonService($http, $rootScope) {
             }, function failureCallBack(data) {
                 return data;
             })
-    }
+    };
     this.logout = function () {
         return $http.get($rootScope.serviceUrl.logout)
             .then(function successCallBack(data) {

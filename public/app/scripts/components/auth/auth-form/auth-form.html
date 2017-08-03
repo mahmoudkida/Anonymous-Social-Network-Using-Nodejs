@@ -8,7 +8,7 @@
         <div class="sign-up-form">
             <a href="index.html" class="logo"><img src="{{$root.imageUrl}}/logo.png" alt="Friend Finder" /></a>
             <h2 class="text-white">Find My Friends</h2>
-            <div class="line-divider" ng-init="$ctrl.showRegister = true"></div>
+            <div class="line-divider" ng-init="$ctrl.showRegister = false"></div>
             <register ng-if="$ctrl.showRegister"></register>
             <login ng-if="!$ctrl.showRegister"></login>
             <a href="#" ng-click="$ctrl.showRegister = !$ctrl.showRegister">

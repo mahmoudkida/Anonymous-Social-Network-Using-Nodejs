@@ -5,11 +5,14 @@ function RootController($rootScope, serverUrl) {
         logout: serverUrl + '/users/logout',
         getPosts: serverUrl + '/posts',
         getUserInfo: serverUrl + '/users/userInfo',
-        submitComment : serverUrl + '/{{postId}}/comment'
-    }
+        updateInfo : serverUrl + '/users/updateInfo',
+        updatePicture : serverUrl + '/users/updatePicture',
+        updatePassword : serverUrl + '/users/updatePassword',
+        submitComment : serverUrl + '/posts/{{postId}}/comments'
+    };
     $rootScope.imageUrl = "/static/app/images";
 }
-RootController.$inject = ['$rootScope', 'serverUrl']
+RootController.$inject = ['$rootScope', 'serverUrl'];
 angular
     .module('root')
     .controller('RootController', RootController);

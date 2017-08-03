@@ -22,6 +22,14 @@ var postModel = new Schema({
     type: String,
     text: String,
     comments: [commmentModel],
+    like:{
+        type:Number,
+        default : 0
+    },
+    dislike:{
+        type:Number,
+        default : 0
+    },
     hashtag: [{
         type: Schema.Types.ObjectId,
         ref: 'hashtag'

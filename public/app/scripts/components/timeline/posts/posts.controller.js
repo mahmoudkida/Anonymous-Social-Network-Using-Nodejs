@@ -23,8 +23,11 @@ function postsController($localStorage, $state, timelineService,$rootScope) {
 
   ctrl.addComment = function(post){
     timelineService.submitComment({comment : post.newComment},post._id).then(function(res){
-
-      debugger;
+      if (res.data.err) {
+        alertify.alert(res.data.err.message)
+        return false;
+      }
+      post.comments = res.data;
     });
 
   }
