@@ -1,0 +1,64 @@
+<div class="post-content" ng-repeat="post in $ctrl.posts track by $index">
+  <!--<img src="images/post-images/1.jpg" alt="post-image" class="img-responsive post-image" />-->
+
+  <div class="post-container">
+    <img ng-src="{{post.by.picture}}" default-image="/static/app/images/emp.png" alt="user"
+         class="profile-photo-md pull-left"/>
+    <div class="post-detail">
+      <div class="user-info">
+        <h5>
+          <a href="timeline.html" class="profile-link">
+            {{post.by.username}}
+
+          </a>
+          <small class="text-muted" ng-if="post.isAnonymous">Will appear as {{post.by.anonymousName}}</small>
+          <br>
+          <!--<span class="following">following</span>-->
+        </h5>
+        <span class="text-muted">Published {{ post.createdAt | amUtc | amLocal | amDurationFormat}}</span>
+
+      </div>
+      <div class="reaction">
+        <!--<a class="btn text-green" ng-click="$ctrl.like(post)"><i class="icon ion-thumbsup"></i> {{post.like}}</a>-->
+        <!--<a class="btn text-red" ng-click="$ctrl.dislike(post)"><i class="fa fa-thumbs-down"></i> {{post.dislike}}</a>-->
+      </div>
+      <div class="line-divider"></div>
+      <div class="post-text">
+        <p>{{post.text}}</p>
+      </div>
+      <div class="line-divider"></div>
+      <div class="post-comment" ng-repeat="comment in post.comments">
+        <img ng-src="{{comment.isAnonymous ? '/static/app/images/emp.png':comment.postedBy.picture}}" default-image="/static/app/images/emp.png" alt=""
+             class="profile-photo-sm"/>
+        <p>
+          <a href="timeline.html" class="profile-link">
+            {{comment.isAnonymous ? comment.postedBy.anonymousName : comment.postedBy.username}}
+          </a>
+          {{ comment.createdAt | amUtc | amDurationFormat}}
+          <br>
+          {{comment.comment}}
+        </p>
+      </div>
+      <form ng-submit="$ctrl.addComment(post)" class="post-comment comment-form">
+        <div>
+          <img ng-src="{{$root.userData.picture}}" default-image="/static/app/images/emp.png" alt=""
+               class="profile-photo-sm"/>
+          <input type="text" ng-model="post.newComment" class="form-control" placeholder="Post a comment..."
+                 ng-required="true">
+          <button type="submit" class="btn btn-link"><i class="fa fa-paper-plane-o"></i></button>
+        </div>
+        <div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="post.isCommentAnonymous" ng-checked="true"> Make the post Anonymous
+              <small class="text-muted">
+                (your name will appear as {{$root.userData.anonymousName}})
+                <a ui-sref="editProfile">Change</a>
+              </small>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

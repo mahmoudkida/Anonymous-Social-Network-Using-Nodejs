@@ -1,0 +1,51 @@
+<div class="row" role="form">
+  <div class="form-group col-md-6">
+    <label class=" control-label">User Name</label>
+    <div class="">
+      <p class="form-control-static">{{$ctrl.user.username}}</p>
+      <!-- class form-control-static to display static text -->
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label class=" control-label">Age</label>
+    <div class="">
+      <p class="form-control-static">{{$ctrl.user.age}}</p>
+      <!-- class form-control-static to display static text -->
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label class=" control-label">Bio</label>
+    <div class="">
+      <p class="form-control-static">{{$ctrl.user.bio}}</p>
+      <!-- class form-control-static to display static text -->
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+   <button type="button"
+           class="btn btn-primary btn-block"
+           data-toggle="modal" data-target="#crushOnFriend">
+     Crush on {{$ctrl.user.username}}
+   </button>
+  </div>
+</div>
+<hr>
+
+
+<div class="modal fade" id="crushOnFriend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="myModalLabel">Crush On Friend</h4>
+    </div>
+    <div class="modal-body">
+      <crush-on-friend></crush-on-friend>
+    </div>
+    <!--<div class="modal-footer">-->
+      <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+      <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+    <!--</div>-->
+  </div>
+</div>
+</div>

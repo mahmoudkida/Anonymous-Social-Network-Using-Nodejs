@@ -14,7 +14,23 @@ function CommonService($http, $rootScope) {
             }, function failureCallBack(data) {
                 return data;
             })
-    }
+    };
+  this.getUsersList = function () {
+    return $http.get($rootScope.serviceUrl.getUsersList)
+      .then(function successCallBack(data) {
+        return data;
+      }, function failureCallBack(data) {
+        return data;
+      })
+  };
+  this.getCrushsList = function () {
+    return $http.get($rootScope.serviceUrl.crush)
+      .then(function successCallBack(data) {
+        return data;
+      }, function failureCallBack(data) {
+        return data;
+      })
+  }
 }
 
 CommonService.$inject = ['$http', '$rootScope']

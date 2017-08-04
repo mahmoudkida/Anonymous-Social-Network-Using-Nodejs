@@ -8,6 +8,10 @@ var commmentModel = new Schema({
     postedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
+    },
+    isAnonymous : {
+        type: Boolean,
+        default : true
     }
 }, {
     timestamps: true
@@ -33,7 +37,11 @@ var postModel = new Schema({
     hashtag: [{
         type: Schema.Types.ObjectId,
         ref: 'hashtag'
-    }]
+    }],
+    isAnonymous : {
+        type: Boolean,
+        default : true
+    }
 }, {
     timestamps: true
 });

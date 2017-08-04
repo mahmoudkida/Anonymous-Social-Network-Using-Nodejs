@@ -11,7 +11,10 @@ var userModel = new Schema({
         required: true,
         select: false
     },
-    anonymousName: String,
+    anonymousName: {
+        type:String,
+        default : 'Anonymous Wshwsher'
+    },
     OauthId: String,
     OauthToken: String,
     age: Number,
@@ -29,6 +32,10 @@ var userModel = new Schema({
     admin: {
         type: Boolean,
         default: false
+    },
+    lastLoginDate : {
+        type: Date,
+        default : new Date()
     }
 }, {
     timestamps: true

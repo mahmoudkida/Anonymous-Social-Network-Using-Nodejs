@@ -7,6 +7,14 @@ function timelineService($http, $rootScope) {
                 return data;
             })
     };
+  this.getPostsOcean = function () {
+    return $http.get($rootScope.serviceUrl.getPostsOcean)
+      .then(function successCallBack(data) {
+        return data;
+      }, function failureCallBack(data) {
+        return data;
+      })
+  };
     this.submitPost = function (postData) {
         return $http.post($rootScope.serviceUrl.getPosts, postData)
             .then(function successCallBack(data) {

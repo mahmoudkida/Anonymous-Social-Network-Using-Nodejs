@@ -7,10 +7,10 @@ var crushs = require('../models/crush');
 var router = express.Router();
 router.use(bodyParser.json());
 var Verify = require('./verify');
-router.route('/:userId')
+router.route('/')
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         crushs.find({
-                to: req.params.userId
+                to: req.decoded._id
             })
             .populate('msg.from')
             .exec(function (err, crushs) {

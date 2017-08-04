@@ -1,5 +1,6 @@
 angular
     .module('components', [
     'components.auth',
-     'components.timeline'
+     'components.timeline',
+      'components.friendProfile'
   ]);

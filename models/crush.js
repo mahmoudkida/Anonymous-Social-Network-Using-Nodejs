@@ -18,6 +18,10 @@ var crushModel = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     },
-    text: String
+    msg: [msgModel],
+    isAnonymous : {
+        type: Boolean,
+        default : true
+    }
 });
 module.exports = mongoose.model('crush', crushModel);

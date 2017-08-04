@@ -5,7 +5,8 @@ angular
     'angular-jwt',
     'angular-loading-bar',
     'angularMoment',
-    'defaultImage'
+    'defaultImage',
+    'ngStorage'
   ])
   .constant('serverUrl', 'http://localhost:3005')
   .config(['$httpProvider', 'jwtInterceptorProvider', '$localStorageProvider',

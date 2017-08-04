@@ -22,19 +22,37 @@ var upload = multer({ storage: storage }).single('file');
 
 
 
-router.route('/')
+router.route('/getUsersList')
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
-        User.find({}).limit(10).exec(function (err, users) {
+        User.find({}).sort("-createdAt").limit(10).exec(function (err, users) {
             if (err) {
                 return next(err);
             }
+            users.forEach(function (user,index) {
+                if (user._id ==  req.decoded._id){
+                    users.splice(index,1);
+                }
+            });
             res.json(users);
         })
     });
+
 router.route('/userInfo')
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         User.find({
             '_id': req.decoded._id
+        }, function (err, user) {
+            if (err) {
+                return next(err);
+            }
+            res.json(user);
+        })
+    });
+
+router.route('/userInfo/:userId')
+    .get(Verify.verifyOrdinaryUser, function (req, res, next) {
+        User.find({
+            '_id': req.params.userId
         }, function (err, user) {
             if (err) {
                 return next(err);
@@ -130,7 +148,6 @@ router.post('/register', function (req, res) {
 
 router.post('/login', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
-        debugger;
         if (err) {
             return next(err);
         }
@@ -145,6 +162,7 @@ router.post('/login', function (req, res, next) {
                     err: 'Could not log in user'
                 });
             }
+            user.lastLoginDate = new Date();
 
             var token = Verify.getToken({
                 "username": user.username,

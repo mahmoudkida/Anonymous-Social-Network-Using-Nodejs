@@ -1,6 +1,6 @@
 <div class="profile-card">
     <img ng-src="{{$ctrl.userData.picture}}" default-image="/static/app/images/emp.png" alt="user" class="profile-photo" />
-    <h5><a href="timeline.html" class="text-white">{{$ctrl.userData.username}}</a></h5>
+    <h5><a ui-sref="posts" class="text-white">{{$ctrl.userData.username}}</a></h5>
     <div><a  class="text-white" ui-sref="editProfile">Edit Profile</a></div>
     <a href="#" class="text-white" ng-click="$ctrl.logout()">Logout</a>
     <!--    <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>-->
@@ -17,7 +17,13 @@
         <!--<div><a href="newsfeed-friends.html">Friends</a></div>-->
     <!--</li>-->
     <li><i class="icon ion-chatboxes"></i>
-        <div><a href="newsfeed-messages.html">Crushes</a></div>
+        <div>
+          <a href="newsfeed-messages.html">
+            Crushes
+            <span class="label label-warning pull-right">{{$ctrl.crushCount}}</span>
+        </a>
+          <div class="clearfix"></div>
+        </div>
     </li>
     <!--<li><i class="icon ion-images"></i>-->
         <!--<div><a href="newsfeed-images.html">Images</a></div>-->

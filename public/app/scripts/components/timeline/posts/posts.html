@@ -1,41 +1,145 @@
-<div class="post-content" ng-repeat="post in $ctrl.posts track by $index">
-  <!--<img src="images/post-images/1.jpg" alt="post-image" class="img-responsive post-image" />-->
-  <div class="post-container">
-    <img ng-src="{{post.by.picture}}" default-image="/static/app/images/emp.png" alt="user"
-         class="profile-photo-md pull-left"/>
-    <div class="post-detail">
-      <div class="user-info">
-        <h5><a href="timeline.html" class="profile-link">{{post.by.username}}</a>
-          <small class="text-muted">Published {{ post.createdAt | amUtc | amLocal | amDurationFormat}}</small>
-          <!--<span class="following">following</span>-->
-        </h5>
+<ul class="nav nav-tabs nav-justified" ng-init="$ctrl.showPosts = 'myPosts'">
+  <li role="presentation" ng-class="{active: $ctrl.showPosts == 'myPosts'}">
+    <a href="" ng-click="$ctrl.showPosts = 'myPosts'">My Posts</a>
+  </li>
+  <li role="presentation" ng-class="{active: $ctrl.showPosts == 'postsOcean'}">
+    <a href="" ng-click="$ctrl.showPosts = 'postsOcean'">Posts Ocean</a>
+  </li>
+</ul>
+<br>
+<div class="" ng-if="$ctrl.showPosts == 'myPosts'">
+  <div class="post-content" ng-repeat="post in $ctrl.posts track by $index">
+    <!--<img src="images/post-images/1.jpg" alt="post-image" class="img-responsive post-image" />-->
 
+    <div class="post-container">
+      <img ng-src="{{post.by.picture}}" default-image="/static/app/images/emp.png" alt="user"
+           class="profile-photo-md pull-left"/>
+      <div class="post-detail">
+        <div class="user-info">
+          <h5>
+            <a class="profile-link">
+              {{post.by.username}}
+
+            </a>
+            <small class="text-muted" ng-if="post.isAnonymous">Will appear as {{post.by.anonymousName}}</small>
+            <br>
+            <!--<span class="following">following</span>-->
+          </h5>
+          <span class="text-muted">Published {{ post.createdAt | amUtc | amLocal | amDurationFormat}}</span>
+
+        </div>
+        <div class="reaction">
+          <!--<a class="btn text-green" ng-click="$ctrl.like(post)"><i class="icon ion-thumbsup"></i> {{post.like}}</a>-->
+          <!--<a class="btn text-red" ng-click="$ctrl.dislike(post)"><i class="fa fa-thumbs-down"></i> {{post.dislike}}</a>-->
+        </div>
+        <div class="line-divider"></div>
+        <div class="post-text">
+          <p>{{post.text}}</p>
+        </div>
+        <div class="line-divider"></div>
+        <div class="post-comment" ng-repeat="comment in post.comments">
+          <img ng-src="{{comment.postedBy.picture}}" default-image="/static/app/images/emp.png" alt=""
+               class="profile-photo-sm"/>
+          <p>
+            <a href="timeline.html" class="profile-link">
+              {{comment.isAnonymous ? comment.postedBy.anonymousName : comment.postedBy.username}}
+            </a>
+            {{ comment.createdAt | amUtc | amDurationFormat}}
+            <br>
+            {{comment.comment}}
+          </p>
+        </div>
+        <form ng-submit="$ctrl.addComment(post)" class="post-comment comment-form">
+          <div>
+            <img ng-src="{{$root.userData.picture}}" default-image="/static/app/images/emp.png" alt=""
+                 class="profile-photo-sm"/>
+            <input type="text" ng-model="post.newComment" class="form-control" placeholder="Post a comment..."
+                   ng-required="true">
+            <button type="submit" class="btn btn-link"><i class="fa fa-paper-plane-o"></i></button>
+          </div>
+          <div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="post.isCommentAnonymous" ng-checked="true"> Make the post Anonymous
+                <small class="text-muted">
+                  (your name will appear as {{$root.userData.anonymousName}})
+                  <a ui-sref="editProfile">Change</a>
+                </small>
+              </label>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="reaction">
-        <!--<a class="btn text-green" ng-click="$ctrl.like(post)"><i class="icon ion-thumbsup"></i> {{post.like}}</a>-->
-        <!--<a class="btn text-red" ng-click="$ctrl.dislike(post)"><i class="fa fa-thumbs-down"></i> {{post.dislike}}</a>-->
-      </div>
-      <div class="line-divider"></div>
-      <div class="post-text">
-        <p>{{post.text}}</p>
-      </div>
-      <div class="line-divider"></div>
-      <div class="post-comment" ng-repeat="comment in post.comments">
-        <img src="images/users/user-11.jpg"  default-image="/static/app/images/emp.png" alt="" class="profile-photo-sm"/>
-        <p>
-          <a href="timeline.html" class="profile-link">
-          {{comment.postedBy.username}}
-        </a>
-          {{ comment.createdAt | amUtc | amDurationFormat}}
-          <br>
-          {{comment.comment}}
-        </p>
-      </div>
-      <form ng-submit="$ctrl.addComment(post)" class="post-comment">
-        <img src="images/users/user-1.jpg" default-image="/static/app/images/emp.png" alt="" class="profile-photo-sm"/>
-        <input type="text" ng-model="post.newComment" class="form-control" placeholder="Post a comment..." ng-required="true">
-        <button type="submit" class="btn btn-link"><i class="fa fa-paper-plane-o"></i></button>
-      </form>
     </div>
   </div>
 </div>
+
+
+<div class="" ng-if="$ctrl.showPosts == 'postsOcean'">
+  <div class="post-content" ng-repeat="postOceanItem in $ctrl.postsOcean track by $index">
+    <!--<img src="images/post-images/1.jpg" alt="post-image" class="img-responsive post-image" />-->
+
+    <div class="post-container">
+      <img ng-src="{{postOceanItem.isAnonymous ? '/static/app/images/emp.png': postOceanItem.by.picture}}" default-image="/static/app/images/emp.png" alt="user"
+           class="profile-photo-md pull-left"/>
+      <div class="post-detail">
+        <div class="user-info">
+          <h5>
+            <a ui-sref="friendProfile({ userId : user._id })" class="profile-link" ng-if="!postOceanItem.isAnonymous">
+              {{ postOceanItem.by.username }}
+            </a>
+            <a class="profile-link" ng-if="postOceanItem.isAnonymous">
+              {{ postOceanItem.by.anonymousName }}
+            </a>
+            <small class="text-muted">Published {{ postOceanItem.createdAt | amUtc | amLocal | amDurationFormat}}
+            </small>
+            <!--<span class="following">following</span>-->
+          </h5>
+
+        </div>
+        <div class="reaction">
+          <!--<a class="btn text-green" ng-click="$ctrl.like(post)"><i class="icon ion-thumbsup"></i> {{postOceanItem.like}}</a>-->
+          <!--<a class="btn text-red" ng-click="$ctrl.dislike(post)"><i class="fa fa-thumbs-down"></i> {{postOceanItem.dislike}}</a>-->
+        </div>
+        <div class="line-divider"></div>
+        <div class="post-text">
+          <p>{{postOceanItem.text}}</p>
+        </div>
+        <div class="line-divider"></div>
+        <div class="post-comment" ng-repeat="comment in postOceanItem.comments">
+          <img ng-src="{{comment.isAnonymous ? '/static/app/images/emp.png':comment.postedBy.picture}}" default-image="/static/app/images/emp.png" alt=""
+               class="profile-photo-sm"/>
+          <p>
+            <a href="timeline.html" class="profile-link">
+              {{comment.isAnonymous ? comment.postedBy.anonymousName : comment.postedBy.username}}
+            </a>
+            {{ comment.createdAt | amUtc | amDurationFormat}}
+            <br>
+            {{comment.comment}}
+          </p>
+        </div>
+        <form ng-submit="$ctrl.addComment(postOceanItem)" class="post-comment comment-form">
+          <div>
+            <img ng-src="{{$root.userData.picture}}" default-image="/static/app/images/emp.png" alt=""
+                 class="profile-photo-sm"/>
+            <input type="text" ng-model="postOceanItem.newComment" class="form-control" placeholder="Post a comment..."
+                   ng-required="true">
+            <button type="submit" class="btn btn-link"><i class="fa fa-paper-plane-o"></i></button>
+          </div>
+          <div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="postOceanItem.isCommentAnonymous" ng-checked="true"> Make the post Anonymous
+                <small class="text-muted">
+                  (your name will appear as {{$root.userData.anonymousName}})
+                  <a ui-sref="editProfile">Change</a>
+                </small>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

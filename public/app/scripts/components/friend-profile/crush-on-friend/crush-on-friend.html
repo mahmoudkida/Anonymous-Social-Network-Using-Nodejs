@@ -1,0 +1,19 @@
+<form ng-submit="$ctrl.sendAnonymousCrush()">
+  <div class="form-group">
+    <label for="username" class=" control-label">Anonymous Name</label>
+    <div class="">
+      <input type="text" class="form-control"
+             ng-required="true" ng-disabled="true"
+             ng-model="$root.userData.anonymousName" id="username" placeholder="Anonymous name...">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="message" class=" control-label">Message</label>
+    <div class="">
+      <textarea class="form-control" ng-model="$root.anonymousMessage" id="message" placeholder="Enter Message..."></textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-paper-plane-o"></i> Send anonymous message</button>
+  <div class="clearfix"></div>
+</form>

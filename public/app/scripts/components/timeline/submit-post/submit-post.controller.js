@@ -3,7 +3,8 @@ function submitpostController(timelineService,$rootScope) {
     ctrl.submitPost = function () {
         timelineService.submitPost({
             text: ctrl.postText,
-            type: 'post'
+            type: 'post',
+            isAnonymous : ctrl.isAnonymous
         }).then(function (res) {
             if (res.data.err) {
                 alertify.alert(res.data.err.message);

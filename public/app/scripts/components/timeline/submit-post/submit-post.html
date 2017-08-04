@@ -2,10 +2,19 @@
     <div class="row">
         <div class="col-md-10 col-sm-10">
             <div class="form-group">
-                <img src="images/users/user-1.jpg" default-image="/static/app/images/emp.png" alt="" class="profile-photo-md" />
+                <img ng-src="{{$root.userData.picture}}" default-image="/static/app/images/emp.png" alt="" class="profile-photo-md" />
                 <textarea name="texts" ng-model="$ctrl.postText" ng-required="true"
                            class="form-control" placeholder="Write what you wish..."></textarea>
             </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="$ctrl.isAnonymous" ng-checked="true"> Make the post Anonymous
+              <small class="text-muted">
+                (your name will appear as {{$root.userData.anonymousName}})
+                <a ui-sref="editProfile">Change</a>
+              </small>
+            </label>
+          </div>
         </div>
         <div class="col-md-2 col-sm-2">
             <div class="tools">

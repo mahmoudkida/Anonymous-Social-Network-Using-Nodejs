@@ -7,12 +7,16 @@ function sidebarController(CommonService, $localStorage,$rootScope) {
         alertify.alert(res.data.err.message)
         return false;
       }
+      $rootScope.userData =  res.data[0];
       ctrl.userData = res.data[0];
     });
   }
 
   ctrl.$onInit = function () {
     getUserInfo();
+    CommonService.getCrushsList().then(function (res) {
+      ctrl.crushCount = res.data.length;
+    });
   };
   $rootScope.$on('profileUpdated', function () {
     getUserInfo();

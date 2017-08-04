@@ -34,22 +34,39 @@ router.route('/')
         });
     })
 
-    .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
+    .delete(Verify.verifyOrdinaryUser, function (req, res, next) {
         posts.findByIdAndRemove(req.params.userId, function (err, resp) {
             if (err) next(err);
             res.json(resp);
         });
     });
-router.route('/:userId').get(Verify.verifyOrdinaryUser, function (req, res, next) {
+
+
+
+
+router.route('/postsOcean').get(Verify.verifyOrdinaryUser, function (req, res, next) {
     posts.find({
-            by: req.params.userId
-        }).sort('-createdAt')
+
+        }).sort('-createdAt').limit(20)
+        .populate('by')
         .populate('comments.postedBy')
         .exec(function (err, posts) {
             if (err) next(err);
             res.json(posts);
         });
 });
+router.route('/:userId')
+    .get(Verify.verifyOrdinaryUser, function (req, res, next) {
+        posts.find({
+            by: req.params.userId
+        }).sort('-createdAt')
+            .populate('by')
+            .populate('comments.postedBy')
+            .exec(function (err, posts) {
+                if (err) next(err);
+                res.json(posts);
+            });
+    });
 router.route('/:postId/like')
     .post(function (req,res,next) {
         posts.findById(req.params.postId, function (err, post) {
@@ -67,6 +84,7 @@ router.route('/:postId/comments')
 
     .get(function (req, res, next) {
         posts.findById(req.params.postId)
+            .populate('by')
             .sort('-createdAt')
             .populate('comments.postedBy')
             .exec(function (err, post) {
@@ -110,6 +128,7 @@ router.route('/:postId/comments/:commentId')
 
     .get(function (req, res, next) {
         posts.findById(req.params.postId)
+            .populate('by')
             .populate('comments.postedBy')
             .exec(function (err, postId) {
                 if (err) next(err);

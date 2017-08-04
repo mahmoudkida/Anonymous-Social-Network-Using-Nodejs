@@ -925,6 +925,7 @@ ul.online-users li span.online-dot {
 
 .follow-user {
     margin-bottom: 20px;
+  display: inline-block;
 }
 
 .follow-user div {
@@ -958,6 +959,7 @@ ul.online-users li span.online-dot {
 .create-post .form-group {
     margin-bottom: 0;
     display: inline-flex;
+  width: 100%;
 }
 
 .create-post .form-group img.profile-photo-md {
@@ -1032,8 +1034,17 @@ video.post-video,
 
 .post-content .post-container .post-detail .post-comment {
     display: inline-flex;
+
     margin: 10px auto;
     width: 100%;
+  &.comment-form{
+    flex-direction: column;
+    > div{
+    display: flex;
+  }
+
+  }
+
 }
 
 .post-content .post-container .post-detail .post-comment img.profile-photo-sm {
