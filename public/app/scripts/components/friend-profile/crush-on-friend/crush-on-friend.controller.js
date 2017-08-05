@@ -7,6 +7,7 @@ function crushOnFriendController($localStorage, $state, friendProfileService,$ro
 
   };
   ctrl.sendAnonymousCrush = function () {
+    debugger;
     friendProfileService.submitCrush({
       from: $rootScope.userData._id,
       to:$stateParams.userId,

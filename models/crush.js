@@ -5,7 +5,11 @@ var msgModel = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     },
-    message: String
+    message: String,
+    isAnonymous : {
+        type: Boolean,
+        default : true
+    }
 }, {
     timestamps: true
 });

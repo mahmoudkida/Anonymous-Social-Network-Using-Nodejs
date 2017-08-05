@@ -2,5 +2,6 @@ angular
     .module('components', [
     'components.auth',
      'components.timeline',
-      'components.friendProfile'
+      'components.friendProfile',
+      'components.crush'
   ]);

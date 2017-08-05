@@ -1,4 +1,4 @@
-function RootController($rootScope, serverUrl,$window,$localStorage) {
+function RootController($rootScope, serverUrl,$window,$localStorage,$state) {
     $rootScope.serviceUrl = {
         register: serverUrl + '/users/register',
         login: serverUrl + '/users/login',
@@ -13,14 +13,18 @@ function RootController($rootScope, serverUrl,$window,$localStorage) {
         updatePicture : serverUrl + '/users/updatePicture',
         updatePassword : serverUrl + '/users/updatePassword',
         submitComment : serverUrl + '/posts/{{postId}}/comments',
-        crush : serverUrl + '/crushs'
+        crush : serverUrl + '/crushs',
+        CrushMessages : serverUrl + '/crushs/{{crushId}}/msg'
     };
     $rootScope.imageUrl = "/static/app/images";
+    if(!$localStorage['x-access-token']){
+      $state.go('auth.login');
+    }
   $window.onbeforeunload = function () {
-    delete  $localStorage['x-access-token'];
+    //delete  $localStorage['x-access-token'];
   }
 }
-RootController.$inject = ['$rootScope', 'serverUrl','$window','$localStorage'];
+RootController.$inject = ['$rootScope', 'serverUrl','$window','$localStorage','$state'];
 angular
     .module('root')
     .controller('RootController', RootController);

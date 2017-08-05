@@ -12,6 +12,8 @@ router.route('/')
         crushs.find({
                 to: req.decoded._id
             })
+            .populate('from')
+            .populate('to')
             .populate('msg.from')
             .exec(function (err, crushs) {
                 if (err) next(err);
@@ -51,14 +53,15 @@ router.route('/:crushId/msg')
     })
 
     .post(function (req, res, next) {
-        crushs.findById(req.params.crushId, function (err, crush) {
+        crushs.findById(req.params.crushId).populate('msg.from').exec(function (err, crush) {
             if (err) next(err);
             req.body.from = req.decoded._id;
+            console.log(req.body)
             crush.msg.push(req.body);
             crush.save(function (err, crush) {
                 if (err) next(err);
                 console.log('Updated msg!');
-                res.json(crush);
+                res.json(crush.msg);
             });
         });
     })

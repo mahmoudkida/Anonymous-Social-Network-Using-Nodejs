@@ -1,0 +1,38 @@
+<div class="tab-content scrollbar-wrapper wrapper scrollbar-outer">
+  <div class="tab-pane active" id="contact-1">
+    <div class="chat-body">
+      <ul class="chat-message">
+        <li ng-class="message.from._id == $root.userData._id ? 'right' : 'left'" ng-repeat="message in $ctrl.messageList track by $index">
+          <img  ng-if="message.from._id != $root.userData._id"
+                ng-src="{{message.isAnonymous ? '/static/app/images/emp.png': message.from.picture}}"
+                alt="" class="profile-photo-sm pull-left"/>
+          <img  ng-if="message.from._id == $root.userData._id"
+                ng-src="{{message.from.picture}}"
+                alt="" class="profile-photo-sm pull-right"/>
+          <div class="chat-item">
+            <div class="chat-item-header">
+              <h6 ng-if="message.from._id == $root.userData._id">{{message.from.username}}</h6>
+              <h6 ng-if="message.from._id != $root.userData._id">
+                {{message.isAnonymous ? message.from.anonymousName : message.from.username}}
+              </h6>
+<div>              <small class="text-muted">{{message.createdAt  | amUtc | amLocal | amDurationFormat}}</small></div>
+            </div>
+            <p>{{message.message}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div><!--Chat Messages in Right End-->
+
+<form class="send-message" ng-submit = "$ctrl.submitMessage()">
+  <div class="input-group">
+    <input type="text" ng-model="$ctrl.newMessage" class="form-control" placeholder="Type your message" required="true">
+    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default" type="button">
+                          <i class="fa fa-paper-plane-o"></i> Send
+                        </button>
+                      </span>
+  </div>
+</form>

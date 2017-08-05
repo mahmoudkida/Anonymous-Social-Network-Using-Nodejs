@@ -1,0 +1,22 @@
+<!-- Contact List in Left-->
+<ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer">
+  <li ng-repeat="crush in $ctrl.crushList track by $index"
+      ng-click="$ctrl.loadMessages(crush._id)"
+      ng-class="{'active': $ctrl.selectedCrush == crush._id}">
+    <!--ui-sref="{{crush.isAnonymous ? '' : friendProfile({ userId : crush.from._id })}}" target="_blank"-->
+    <a data-toggle="tab">
+      <div class="contact">
+        <img ng-src="{{crush.isAnonymous ? '/static/app/images/emp.png': crush.from.picture}}"
+             alt="" class="profile-photo-sm pull-left"/>
+        <div class="msg-preview">
+          <h6>{{crush.isAnonymous ? crush.from.anonymousName : crush.from.username}}</h6>
+          <!--<small class="text-muted">-->
+            <!--{{crush.msg[crush.msg.length - 1].updatedAt | amUtc | amLocal | amDurationFormat}}-->
+          <!--</small>-->
+          <p class="text-muted">{{crush.msg[crush.msg.length - 1].message}}</p>
+          <!--<div class="chat-alert">1</div>-->
+        </div>
+      </div>
+    </a>
+  </li>
+</ul><!--Contact List in Left End-->
