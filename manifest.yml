@@ -1,0 +1,6 @@
+applications:
+- name: wshwsh
+  random-route: true
+  memory: 128M
+  services:
+    - Compose for MongoDB-u3

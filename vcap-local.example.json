@@ -1,0 +1,26 @@
+{
+  "compose-for-mongodb": [
+    {
+      "credentials": {
+        "db_type": "mongodb",
+        "maps": [],
+        "name": "bmix-lon-yp-c44d4a76-7392-4a51-83cc-a39f800652b7",
+        "uri_cli": "mongo --ssl --sslAllowInvalidCertificates sl-eu-lon-2-portal.4.dblayer.com:19029/compose --authenticationDatabase admin -u admin -p XTVPLNKAYVVTSREC",
+        "ca_certificate_base64": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURlVENDQW1HZ0F3SUJBZ0lFV1lZelhqQU5CZ2txaGtpRzl3MEJBUTBGQURBK01Ud3dPZ1lEVlFRRERETnQKWVdodGIzVmtRSFY0WW1WeWRDNWpiMjB0TUdGaE4yTmlOV1UyTlRZNE5qSmhOR1psTldabU0yUmpOR1ppTkRFMQpaR0l3SGhjTk1UY3dPREExTWpFd05qTTRXaGNOTXpjd09EQTFNakV3TURBd1dqQStNVHd3T2dZRFZRUURERE50CllXaHRiM1ZrUUhWNFltVnlkQzVqYjIwdE1HRmhOMk5pTldVMk5UWTROakpoTkdabE5XWm1NMlJqTkdaaU5ERTEKWkdJd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUR5RWtNOVFkSGhVNXRvT3lLNgorYU56Z3BnRkQrTjgwMzcwSVo1bUFHNmlLUG5kajV5WW9pUEdRb2s4cm16Ui9rWUlFamdQTi8zcDkxemlQZ2lWClZwSkljZHVXLy9Oam9IZmFOdEY4bGlOanUxd0NSaTBXSEVydFI1b1J3NHQyMUhRSTVjUDIwd3FzM09rUEpBUk0KSmcrKzFQZW9iTXo3UkJwLzZ4amNQKzAwUFVmSkdQbENCUU80MlcrYlQvTW9QT1pjbm9CZWpwWmlWVk4xcEFMQQppK3JTajFLeW9zM1p3ZFVUZHA0WTBqUW0xQUl1bno1MDg1dERzV1E4WUhjbytza3h5eU9TTUpvT3l4bUpNQmdVClhJOUxJdytMQzlFbi9SUU5hblEwdUo0ZzZET2tLVFB5WlVXY1BVUG04S3RpVDZab1NrdnFTbUdSU0Y3Ym42cFoKTnBUaEFnTUJBQUdqZnpCOU1CMEdBMVVkRGdRV0JCUmFhbEJwWitnWlpkNnAyWVo0ZnRNMDgyOFhBekFPQmdOVgpIUThCQWY4RUJBTUNBZ1F3SFFZRFZSMGxCQll3RkFZSUt3WUJCUVVIQXdFR0NDc0dBUVVGQndNQ01Bd0dBMVVkCkV3UUZNQU1CQWY4d0h3WURWUjBqQkJnd0ZvQVVXbXBRYVdmb0dXWGVxZG1HZUg3VE5QTnZGd013RFFZSktvWkkKaHZjTkFRRU5CUUFEZ2dFQkFId3dkSDE0K051NkNGMzJFQ1lUZUkyT3VJb1pVWENtOUFUNFFOV3hiL2FHQmV0bApLMlJWaW1YOFk2NGU3VWd5TDZZWHUyWDZveWx4K3hiL3FDUkozb0FweGlOcFZNNjZHY1FvckhBWGRuRithbC95CjNtdGJIMHZsb2VtZjUwYzlsdkw1bVRkOUh0azk4T3RNdnlsVVByN3pzQkNPaCtjMEZ4UWUwalc4eXhWVEZUaGUKRGQ1Z05VMERSNmMyYkhRb3oyS0MxL1E3NjFTNzcwcm9tSkpRREdlZnNwNVZKdCtQcVB3akozc0FLMk5oOW1SSwpFYmxlL2VBbkNuL05Za0ZNeGZZUkRDWVA3aDhJaGZhQmFvcWlYd01EVEZEN0gvUWZ4dy9QaVN5QWtUVGtVbjkwCjJxUWNCaU8xUW5qdTY3WndyNDRGSzFlOUYycDhVT1V3SC9ZNXliST0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=",
+        "deployment_id": "5986335309aa5102f2003143",
+        "uri": "mongodb://admin:XTVPLNKAYVVTSREC@sl-eu-lon-2-portal.4.dblayer.com:19029,sl-eu-lon-2-portal.0.dblayer.com:19029/compose?ssl=true&authSource=admin"
+      },
+      "syslog_drain_url": null,
+      "volume_mounts": [],
+      "label": "compose-for-mongodb",
+      "provider": null,
+      "plan": "Standard",
+      "name": "Compose for MongoDB-u3",
+      "tags": [
+        "big_data",
+        "data_management",
+        "ibm_created"
+      ]
+    }
+  ]
+}

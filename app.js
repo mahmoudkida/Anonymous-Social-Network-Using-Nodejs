@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var mongodbUri = require('mongodb-uri');
+var cfenv = require('cfenv');
 var passport = require('passport');
 var authenticate = require('./authenticate');
 
@@ -45,7 +47,29 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect(config.mongoUrl);
+var appenv = cfenv.getAppEnv();
+var services = appenv.services;
+var mongodb_services = services["compose-for-mongodb"];
+var credentials = mongodb_services[0].credentials;
+var ca = [new Buffer(credentials.ca_certificate_base64, 'base64')];
+console.log(ca);
+
+var uri = credentials.uri;
+var mongooseConnectString = mongodbUri.formatMongoose(uri);
+console.log(mongooseConnectString);
+var singlemongooseConnectString = mongooseConnectString.split(",")[0];
+console.log(singlemongooseConnectString);
+mongoose.connect(singlemongooseConnectString, {
+    server: {
+        ssl: true,
+        sslValidate: true,
+        sslCA: ca,
+        poolSize: 1,
+        reconnectTries: 1
+    }
+});
+
+//mongoose.connect(config.mongoUrl);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
@@ -65,7 +89,7 @@ app.use(function (req, res, next) {
     err.status = 404;
     next(err);
 });
-var listener = app.listen(3005, function () {
+var listener = app.listen(3000, function () {
     console.log('Listening on port ' + listener.address().port); //Listening on port 8888
 });
 

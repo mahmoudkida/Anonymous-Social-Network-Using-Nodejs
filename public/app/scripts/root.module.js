@@ -9,7 +9,8 @@ angular
     'ngStorage',
     'btford.socket-io'
   ])
-  .constant('serverUrl', 'http://localhost:3005')
+  //.constant('serverUrl', 'http://localhost:3000')
+  .constant('serverUrl', 'https://wshwsh.eu-gb.mybluemix.net')
   .config(['$httpProvider', 'jwtInterceptorProvider', '$localStorageProvider',
     function ($httpProvider, jwtInterceptorProvider, $localStorageProvider) {
       //$httpProvider.defaults.headers.common['x-access-token'] = $localStorage['x-access-token'];

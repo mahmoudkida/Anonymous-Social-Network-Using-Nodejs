@@ -17,7 +17,7 @@ function LoginController(AuthService, $state, $localStorage, $http, alertify) {
                 }
                 if(res.data.token){
                   $localStorage['x-access-token'] = res.data.token;
-                  //$http.defaults.headers.common['x-access-token'] = $localStorage['x-access-token'];
+                  $http.defaults.headers.common['x-access-token'] = $localStorage['x-access-token'];
 
                   $state.go('posts');
                 }
